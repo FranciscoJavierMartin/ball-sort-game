@@ -1,5 +1,5 @@
 <template>
-  <slot :onClick="onClick" />
+  <slot :onClick />
   <ShareModal v-if="isModalVisible" :data @close="onCloseModal" />
 </template>
 
@@ -7,6 +7,7 @@
 import { ref } from 'vue';
 import type { ShareData } from '@/modules/share/interfaces/share-data';
 import ShareModal from '@/modules/share/components/modal/Modal.vue';
+import { shareLink } from '@/modules/share/helpers/share-link';
 
 const isModalVisible = ref<boolean>(false);
 
@@ -17,12 +18,13 @@ const props = withDefaults(
   },
 );
 
-function onClick() {
+const onClick = () => {
   if ('share' in navigator && props.useNativeOption) {
+    shareLink(props.data);
   } else {
     isModalVisible.value = true;
   }
-}
+};
 
 function onCloseModal(isShare: boolean = false): void {
   if (isShare) {
