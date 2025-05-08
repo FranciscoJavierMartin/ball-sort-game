@@ -20,3 +20,5 @@ const resizeScreen = debounce(() => {
     `zoom: ${applyZoom}%; transform: scale(${finalScale});`,
   );
 }, 100);
+
+export default resizeScreen;

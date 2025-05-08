@@ -1,7 +1,11 @@
+export const $ = document.querySelector.bind(document);
+export const $$ = document.querySelectorAll.bind(document);
+
 export function isMobile(): boolean {
   return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export const debounce = (fn: Function, delay: number) => {
   let t: number;
   return function () {
