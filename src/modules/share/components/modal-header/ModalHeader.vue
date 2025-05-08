@@ -1,0 +1,33 @@
+<template>
+  <div class="modal-share-header">
+    <h4>{{ label }}</h4>
+    <button @click="$emit('close-modal')">
+      <Icon type="close" fill="black" />
+    </button>
+  </div>
+</template>
+
+<script setup lang="ts">
+import Icon from '@/modules/common/components/icon/icon.vue';
+
+withDefaults(defineProps<{ label?: string }>(), { label: 'Share...' });
+defineEmits(['close-modal']);
+</script>
+
+<style scoped>
+.modal-share-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+  }
+}
+</style>
