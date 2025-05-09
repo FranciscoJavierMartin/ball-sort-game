@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { isValidJson } from '@/modules/common/helpers/miscellaneous';
+
 const CACHE_KEY = 'ball-sort-game';
 type StorageType = 'localStorage' | 'sessionStorage';
 
@@ -15,7 +18,7 @@ export function saveProperties(
   value: any,
   storageType: StorageType,
 ): void {
-  const localCache = getDataCache(storageType);
+  const localCache = getDataCache(storageType) as any;
   localCache[property] = value;
   saveCache(localCache, storageType);
 }
@@ -34,7 +37,7 @@ export function getValueFromCache(
   initial: any,
   storageType: StorageType = 'localStorage',
 ): any {
-  const cacheData = getDataCache(storageType);
+  const cacheData = getDataCache(storageType) as any;
   return cacheData.hasOwnProperty(key) ? cacheData[key] : initial;
 }
 
@@ -42,7 +45,7 @@ export function deleteProperty(
   property: string,
   storageType: StorageType,
 ): void {
-  const localCache = getDataCache(storageType);
+  const localCache = getDataCache(storageType) as any;
 
   if (localCache.hasOwnProperty(property)) {
     delete localCache[property];
