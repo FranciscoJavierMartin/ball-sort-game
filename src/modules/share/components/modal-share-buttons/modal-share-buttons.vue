@@ -18,7 +18,7 @@ import Icon from '@/modules/common/components/icon/icon.vue';
 import {
   type TButtons,
   BUTTONS,
-} from '@/modules/share/components/buttons/data';
+} from '@/modules/share/components/modal-share-buttons/data';
 import type { ShareData } from '@/modules/share/interfaces/share-data';
 import { shareLinkWithSocialNetwork } from '@/modules/share/helpers/share-link';
 import copyToClipboard from '@/modules/share/helpers/copy-to-clipboard';

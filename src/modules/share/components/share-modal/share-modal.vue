@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { $ } from '@/modules/common/helpers/miscellaneous';
-import ModalShareButtons from '@/modules/share/components/buttons/ModalShareButtons.vue';
+import ModalShareButtons from '@/modules/share/components/modal-share-buttons/modal-share-buttons.vue';
 import ModalHeader from '@/modules/share/components/modal-header/ModalHeader.vue';
 import type { ShareData } from '@/modules/share/interfaces/share-data';
 import { onBeforeMount, onUnmounted, ref } from 'vue';
