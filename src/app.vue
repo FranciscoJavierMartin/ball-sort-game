@@ -1,17 +1,6 @@
 <template>
   <AppWrapper>
-    <div style="color: white">
-      Ball sort puzzle
-      <div>
-        <ShareButton
-          :data="dataShare"
-          :useNativeOption="false"
-          v-slot="{ onClick }"
-        >
-          <button @click="onClick">Share</button>
-        </ShareButton>
-      </div>
-    </div>
+    <GamePage />
   </AppWrapper>
 </template>
 
@@ -19,14 +8,14 @@
 import { onBeforeUnmount, onMounted } from 'vue';
 import AppWrapper from '@/modules/common/components/app-wrapper/app-wrapper.vue';
 import resizeScreen from '@/modules/common/helpers/resize-screen';
-import type { ShareData } from '@/modules/share/interfaces/share-data';
-import ShareButton from '@/modules/share/components/share-button/share-button.vue';
+import GamePage from './modules/game/pages/game-page.vue';
+// import type { ShareData } from '@/modules/share/interfaces/share-data';
 
-const dataShare: ShareData = {
-  title: 'Ball Sort Puzzle',
-  text: 'Come and play Ball Sort Puzzle',
-  url: window.location.href,
-};
+// const dataShare: ShareData = {
+//   title: 'Ball Sort Puzzle',
+//   text: 'Come and play Ball Sort Puzzle',
+//   url: window.location.href,
+// };
 
 onMounted(() => {
   window.addEventListener('resize', resizeScreen);

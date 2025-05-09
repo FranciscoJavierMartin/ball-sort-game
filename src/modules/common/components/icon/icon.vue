@@ -16,8 +16,3 @@ withDefaults(defineProps<{ type: TypeIcon; fill?: string }>(), {
   fill: 'white',
 });
 </script>
-
-<style scoped>
-.icon-wrapper {
-}
-</style>
