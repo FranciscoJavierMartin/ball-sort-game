@@ -39,7 +39,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
+<style>
 #overlay-share {
   animation: fadeIn 500ms ease both;
   background: rgb(0 0 0 / 85%);
