@@ -1,7 +1,7 @@
 <template>
   <div class="modal-share-header">
     <h4>{{ label }}</h4>
-    <button @click="$emit('close-modal')">
+    <button @click="$emit('closeModal')">
       <Icon type="close" fill="black" />
     </button>
   </div>
@@ -11,7 +11,7 @@
 import Icon from '@/modules/common/components/icon/icon.vue';
 
 withDefaults(defineProps<{ label?: string }>(), { label: 'Share...' });
-defineEmits(['close-modal']);
+defineEmits<{ closeModal: [boolean?] }>();
 </script>
 
 <style scoped>

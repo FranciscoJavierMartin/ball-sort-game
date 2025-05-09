@@ -44,6 +44,8 @@
     .screen {
       background-color: unset;
       background-image: unset;
+      height: 100dvh;
+      width: 100dvw;
     }
   }
 }

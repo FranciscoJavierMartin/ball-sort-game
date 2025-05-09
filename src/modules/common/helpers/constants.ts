@@ -1,3 +1,5 @@
+import type { SelectedItems, Tween } from '@/modules/common/interfaces/common';
+
 export const BASE_HEIGHT = 732;
 export const BASE_WIDTH = 412;
 // Percentage to be added to the tube for the width...
