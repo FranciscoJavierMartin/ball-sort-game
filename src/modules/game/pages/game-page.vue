@@ -31,13 +31,33 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import GameHeader from '@/modules/game/components/game-header/game-header.vue';
 import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue';
 import Ball from '@/modules/game/components/ball/ball.vue';
 import COLORS_BALLS from '@/modules/common/helpers/colors';
 import Tube from '@/modules/game/components/tube/tube.vue';
+import type { Balls, GameProps } from '@/modules/common/interfaces/common';
+import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 
-const size = 40;
+const level: GameProps & {
+  levelCompleted: boolean;
+  handleNextLevel: (isNextLevel: boolean) => void;
+} = {
+  capacity: 4,
+  distribution: [2],
+  isSpecialLevel: false,
+  level: 1,
+  size: 35,
+  tubes: {
+    '0': { balls: [{ value: 5 }] },
+    '1': { balls: [{ value: 5 }, { value: 5 }, { value: 5 }] },
+  },
+  levelCompleted: false,
+  handleNextLevel: (isNextLevel = false) => {},
+};
+
+const balls = ref<Balls[]>(getInitialBalls(level.tubes));
 
 function handleClick(index: number): void {
   console.log('Clicked', index);
