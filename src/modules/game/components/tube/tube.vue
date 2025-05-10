@@ -8,12 +8,15 @@
 </template>
 
 <script setup lang="ts">
+import { computed, type StyleValue } from 'vue';
 import {
   HEIGHT_OFFSET_PERCENTAGE,
   WIDTH_PADDING_PERCENTAGE,
 } from '@/modules/common/helpers/constants';
 import type { Coordinate } from '@/modules/common/interfaces/common';
-import { computed, type StyleValue } from 'vue';
+
+// x: offsetLeft
+// y: offsetTop
 
 const props = withDefaults(
   defineProps<{
