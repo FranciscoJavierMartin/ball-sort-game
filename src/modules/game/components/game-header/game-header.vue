@@ -1,5 +1,5 @@
 <template>
-  <div class="game-header">
+  <header class="game-header">
     <RouterLink
       :to="{ name: ROUTES.HOME.name }"
       title="Home"
@@ -29,7 +29,7 @@
       <span>+</span>
       <Icon type="tube" />
     </button>
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +59,7 @@ defineEmits<{
   padding: 30px 10px;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: calc(100% - 20px);
 
   .button {
     align-items: center;
