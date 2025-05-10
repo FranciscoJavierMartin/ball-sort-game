@@ -6,6 +6,7 @@
         :key="tube.index"
         v-bind="tube"
         :size
+        @click="(index) => $emit('click', index)"
       />
     </div>
   </template>
