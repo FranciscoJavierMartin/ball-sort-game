@@ -4,17 +4,25 @@
     :style
     :aria-label="`Tube ${index + 1}`"
     @click="handleClick"
-  ></button>
+  >
+    <ConfettiExplosion
+      v-if="showConfetti && isComplete"
+      :duration="3000"
+      :particleCount="150"
+      :particleSize="10"
+      :colors="['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a']"
+    />
+  </button>
 </template>
 
 <script setup lang="ts">
 import { computed, type StyleValue } from 'vue';
+import ConfettiExplosion from 'vue-confetti-explosion';
 import {
   HEIGHT_OFFSET_PERCENTAGE,
   WIDTH_PADDING_PERCENTAGE,
 } from '@/modules/common/helpers/constants';
 import type { Coordinate } from '@/modules/common/interfaces/common';
-
 // x: offsetLeft
 // y: offsetTop
 
