@@ -1,10 +1,10 @@
 <template>
   <GameWrapper :disable-u-i="false">
     <GameHeader
-      :isSpecialLevel="false"
-      :level="1"
-      :totalUndo="0"
-      :tubeHelpEnabled="true"
+      :isSpecialLevel="level.isSpecialLevel"
+      :level="level.level"
+      :totalUndo="2"
+      :tubeHelpEnabled="tubeDistribution.isComplete"
     />
     <Ball :colors="COLORS_BALLS[0]" :size :x="300" :y="300" />
     <div
