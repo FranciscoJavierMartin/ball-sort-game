@@ -14,7 +14,7 @@ export default function getInitialTestTubes(
       (_, balIndex) => balIndex + indexBase,
     );
     const tubeCapacity = tubes[i]?.capacity || capacity;
-    const isComplete = tubes[i].isComplete || false;
+    const isComplete = tubes[i]?.isComplete || false;
     indexBase += balls.length;
 
     newTestTubes.push({

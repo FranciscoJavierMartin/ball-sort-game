@@ -22,7 +22,7 @@ import {
   HEIGHT_OFFSET_PERCENTAGE,
   WIDTH_PADDING_PERCENTAGE,
 } from '@/modules/common/helpers/constants';
-import type { Coordinate } from '@/modules/common/interfaces/common';
+import type { CoordinateTube } from '@/modules/common/interfaces/common';
 // x: offsetLeft
 // y: offsetTop
 
@@ -41,7 +41,7 @@ const props = withDefaults(
 );
 const emits = defineEmits<{
   click: [index: number];
-  handlePosition: [data: Coordinate];
+  handlePosition: [data: CoordinateTube];
 }>();
 
 const style = computed<StyleValue>(() => {

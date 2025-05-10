@@ -6,27 +6,12 @@
       :totalUndo="2"
       :tubeHelpEnabled="tubeDistribution.isComplete"
     />
-    <Ball :colors="COLORS_BALLS[0]" :size :x="300" :y="300" />
-    <div
-      :style="{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'space-evenly',
-      }"
-    >
-      <Tube :size :capacity="4" :index="0" @click="handleClick" />
-      <Tube :size :capacity="4" :index="1" @click="handleClick" />
-      <Tube :size :capacity="4" :index="2" @click="handleClick" />
-    </div>
-    <!-- <Ball
-      v-for="(color, index) of COLORS_BALLS"
-      :key="index"
-      :colors="color"
-      :size="20"
-      :x="40 * index"
-      animate
-      :y="300"
-    /> -->
+    <Tubes
+      :size="level.size"
+      :distribution="tubeDistribution.distribution"
+      :test-tubes
+      @click="handleClick"
+    />
   </GameWrapper>
 </template>
 
@@ -34,9 +19,6 @@
 import { reactive, ref } from 'vue';
 import GameHeader from '@/modules/game/components/game-header/game-header.vue';
 import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue';
-import Ball from '@/modules/game/components/ball/ball.vue';
-import COLORS_BALLS from '@/modules/common/helpers/colors';
-import Tube from '@/modules/game/components/tube/tube.vue';
 import type {
   TubeDistribution,
   Balls,
@@ -46,21 +28,77 @@ import type {
 import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
 import getInitialTubeDistribution from '@/modules/game/helpers/get-initial-tube-distribution';
+import Tubes from '@/modules/game/components/tubes/tubes.vue';
 
 const level: GameProps & {
   levelCompleted: boolean;
   handleNextLevel: (isNextLevel: boolean) => void;
 } = {
   capacity: 4,
-  distribution: [2],
+  distribution: [5, 4],
   isSpecialLevel: false,
-  level: 1,
+  level: 30,
   size: 35,
   tubes: {
-    '0': { balls: [{ value: 5 }] },
-    '1': { balls: [{ value: 5 }, { value: 5 }, { value: 5 }] },
+    '0': {
+      balls: [
+        { value: 1, incognito: false },
+        { value: 8, incognito: false },
+        { value: 1, incognito: false },
+        { value: 6, incognito: false },
+      ],
+    },
+    '1': {
+      balls: [
+        { value: 4, incognito: false },
+        { value: 8, incognito: false },
+        { value: 1, incognito: false },
+        { value: 4, incognito: false },
+      ],
+    },
+    '2': {
+      balls: [
+        { value: 5, incognito: false },
+        { value: 5, incognito: false },
+        { value: 9, incognito: false },
+        { value: 6, incognito: false },
+      ],
+    },
+    '3': {
+      balls: [
+        { value: 1, incognito: false },
+        { value: 9, incognito: false },
+        { value: 9, incognito: false },
+        { value: 8, incognito: false },
+      ],
+    },
+    '4': {
+      balls: [
+        { value: 5, incognito: false },
+        { value: 5, incognito: false },
+        { value: 6, incognito: false },
+        { value: 4, incognito: false },
+      ],
+    },
+    '6': {
+      balls: [
+        { value: 4, incognito: false },
+        { value: 7, incognito: false },
+        { value: 6, incognito: false },
+        { value: 8, incognito: false },
+      ],
+    },
+    '8': {
+      balls: [
+        { value: 7, incognito: false },
+        { value: 7, incognito: false },
+        { value: 7, incognito: false },
+        { value: 9, incognito: false },
+      ],
+    },
   },
   levelCompleted: false,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleNextLevel: (isNextLevel = false) => {},
 };
 
