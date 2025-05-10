@@ -52,37 +52,37 @@ defineEmits<{
 
 <style scoped>
 .game-header {
-  position: absolute;
-  width: 100%;
-  top: 0;
-  left: 0;
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  left: 0;
   padding: 30px 10px;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
   .button {
-    border-radius: 12px;
-    height: 45px;
-    width: 45px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    border-radius: 12px;
+    display: flex;
+    height: 45px;
+    justify-content: center;
+    width: 45px;
 
     .icon-wrapper {
-      width: 62%;
       height: 62%;
+      width: 62%;
 
       :deep(svg) {
-        width: 100%;
         height: 100%;
+        width: 100%;
       }
     }
 
     span {
       color: white;
-      font-weight: bold;
       font-size: 15px;
+      font-weight: bold;
       margin-right: -5px;
     }
   }
@@ -91,6 +91,10 @@ defineEmits<{
     align-items: center;
     background-color: #303030;
     border-radius: 10px;
+    box-shadow:
+      rgba(0, 0, 0, 0.4) 0px 2px 4px,
+      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     color: #6858c3;
     display: flex;
     flex-direction: column;
@@ -101,10 +105,6 @@ defineEmits<{
     text-align: center;
     text-transform: uppercase;
     width: 30%;
-    box-shadow:
-      rgba(0, 0, 0, 0.4) 0px 2px 4px,
-      rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-      rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 
     div:first-child {
       color: #6f6f6d;
@@ -119,8 +119,8 @@ defineEmits<{
 
   :deep(svg) {
     filter: drop-shadow(0 2px 1px black);
-    width: 100%;
     height: 100%;
+    width: 100%;
   }
 }
 </style>

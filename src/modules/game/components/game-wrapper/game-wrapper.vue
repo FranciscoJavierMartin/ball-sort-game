@@ -13,10 +13,10 @@ withDefaults(defineProps<{ disableUI?: boolean }>(), { disableUI: false });
 .game-wrapper {
   align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100%;
   justify-content: center;
   width: 100%;
-  flex-direction: column;
 
   .game-wrapper-disabled {
     height: 100%;
