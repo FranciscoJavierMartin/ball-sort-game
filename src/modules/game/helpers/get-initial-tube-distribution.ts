@@ -8,10 +8,14 @@ function validateLastTubeHelp(
   testTubes: TestTubes[],
   balls: Balls[],
   capacity: number,
-) {
+): boolean {
   const lastTube = testTubes[testTubes.length - 1];
   const totalTubesFill = [...new Set(balls.map((v) => v.color))].length;
-  const totalTUbes = testTubes.length;
+  const totalTubes = testTubes.length;
+
+  const minimumTubeValue =
+    totalTubes + 1 <= totalTubesFill + 3 || lastTube.capacity < capacity;
+  return minimumTubeValue;
 }
 
 export default function getInitialTubeDistribution({
@@ -25,5 +29,15 @@ export default function getInitialTubeDistribution({
   distribution: number[];
   testTubes: TestTubes[];
 }): TubeDistribution {
-  const minumumTubeValue = validateLastTubeHelp(testTubes, balls, capacity);
+  const minumumTubeValue: boolean = validateLastTubeHelp(
+    testTubes,
+    balls,
+    capacity,
+  );
+  const newDistribution: TubeDistribution = {
+    distribution,
+    isComplete: !minumumTubeValue,
+  };
+
+  return newDistribution;
 }
