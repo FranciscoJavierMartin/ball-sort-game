@@ -59,7 +59,7 @@ defineEmits<{
   padding: 30px 10px;
   position: absolute;
   top: 0;
-  width: 100%;
+  width: calc(100% - 20px);
 
   .button {
     align-items: center;
@@ -68,16 +68,6 @@ defineEmits<{
     height: 45px;
     justify-content: center;
     width: 45px;
-
-    .icon-wrapper {
-      height: 62%;
-      width: 62%;
-
-      :deep(svg) {
-        height: 100%;
-        width: 100%;
-      }
-    }
 
     span {
       color: white;
@@ -119,8 +109,8 @@ defineEmits<{
 
   :deep(svg) {
     filter: drop-shadow(0 2px 1px black);
-    height: 100%;
-    width: 100%;
+    height: 24px;
+    width: 24px;
   }
 }
 </style>
