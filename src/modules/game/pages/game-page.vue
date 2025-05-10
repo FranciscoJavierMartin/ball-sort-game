@@ -1,5 +1,5 @@
 <template>
-  <GameWrapper>
+  <GameWrapper :disable-u-i="false">
     <GameHeader
       :isSpecialLevel="false"
       :level="1"

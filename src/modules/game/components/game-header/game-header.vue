@@ -119,6 +119,8 @@ defineEmits<{
 
   :deep(svg) {
     filter: drop-shadow(0 2px 1px black);
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
