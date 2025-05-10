@@ -37,8 +37,13 @@ import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue
 import Ball from '@/modules/game/components/ball/ball.vue';
 import COLORS_BALLS from '@/modules/common/helpers/colors';
 import Tube from '@/modules/game/components/tube/tube.vue';
-import type { Balls, GameProps } from '@/modules/common/interfaces/common';
+import type {
+  Balls,
+  GameProps,
+  TestTubes,
+} from '@/modules/common/interfaces/common';
 import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
+import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
 
 const level: GameProps & {
   levelCompleted: boolean;
@@ -58,6 +63,14 @@ const level: GameProps & {
 };
 
 const balls = ref<Balls[]>(getInitialBalls(level.tubes));
+const testTubes = ref<TestTubes[]>(
+  getInitialTestTubes(
+    level.tubes,
+    level.distribution,
+    level.capacity,
+    level.size,
+  ),
+);
 
 function handleClick(index: number): void {
   console.log('Clicked', index);
