@@ -16,8 +16,8 @@ defineEmits<{ closeModal: [boolean?] }>();
 
 <style scoped>
 .modal-share-header {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
   width: 100%;

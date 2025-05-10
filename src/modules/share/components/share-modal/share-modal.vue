@@ -44,24 +44,24 @@ onUnmounted(() => {
   animation: fadeIn 500ms ease both;
   background: rgb(0 0 0 / 85%);
   height: 100%;
-  width: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
+  width: 100%;
   z-index: 100;
 
   .modal-share-wrapper {
     animation: fadeIn 1000ms ease both;
     background-color: white;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
     border-radius: 15px 15px 0 0;
-    padding: 20px;
+    bottom: 0;
     box-shadow:
       rgba(17, 17, 26, 0.1) 0px 4px 16px,
       rgba(17, 17, 26, 0.1) 0px 8px 24px,
       rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
   }
 }
 

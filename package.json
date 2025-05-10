@@ -14,7 +14,8 @@
     "format": "prettier --write src/",
     "prepare": "husky",
     "check-locale-keys": "bun ./scripts/check-locale-keys.ts",
-    "stylelint": "stylelint ./src/**/*.{css,vue}"
+    "stylelint": "stylelint ./src/**/*.{css,vue}",
+    "stylelint:fix": "stylelint ./src/**/*.{css,vue} --fix"
   },
   "dependencies": {
     "pinia": "^3.0.1",

@@ -2,7 +2,6 @@
 export default {
   plugins: ['stylelint-prettier'],
   extends: [
-    // 'stylelint-config-standard',
     'stylelint-config-alphabetical-order',
     'stylelint-prettier/recommended',
     'stylelint-config-recommended-vue',

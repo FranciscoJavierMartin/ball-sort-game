@@ -19,5 +19,3 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeScreen);
 });
 </script>
-
-<style scoped></style>
