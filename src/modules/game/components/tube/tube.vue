@@ -37,7 +37,7 @@ const style = computed<StyleValue>(() => {
   const width = Math.round(props.size + props.size * WIDTH_PADDING_PERCENTAGE);
   const borderWidth = Math.round(width - width * 0.95);
   const height = Math.round(
-    props.size * props.capacity * props.size * HEIGHT_OFFSET_PERCENTAGE,
+    props.size * props.capacity + props.size * HEIGHT_OFFSET_PERCENTAGE,
   );
 
   return {
