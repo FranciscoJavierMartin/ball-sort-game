@@ -1,3 +1,16 @@
 {
-  "title": "Title"
+  "game": {
+    "header": {
+      "level": "Level",
+      "specialLevel": "Special level"
+    }
+  },
+  "share": {
+    "modal": {
+      "copy": "Copy",
+      "twitter": "Twitter",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn"
+    }
+  }
 }

@@ -8,7 +8,7 @@
       <button @click="handleClick(button)">
         <Icon :type="button.icon" fill="black" />
       </button>
-      <span>{{ button.label }}</span>
+      <span>{{ $t(button.label) }}</span>
     </div>
   </div>
 </template>

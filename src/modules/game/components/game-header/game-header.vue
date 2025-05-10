@@ -12,10 +12,10 @@
     </button>
     <div class="game-header-level">
       <template v-if="!isSpecialLevel">
-        <div>LEVEL</div>
+        <div>{{ $t('game.header.level') }}</div>
         <div>{{ level }}</div>
       </template>
-      <template v-else> Special level </template>
+      <template v-else> {{ $t('game.header.specialLevel') }} </template>
     </div>
     <button
       class="button blue"
