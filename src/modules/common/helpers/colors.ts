@@ -14,3 +14,5 @@ const COLORS_BALLS = [
 ];
 
 export default COLORS_BALLS;
+
+export const INCOGNITO_COLOR = '#ababab';
