@@ -1,21 +1,14 @@
 <template>
   <AppWrapper>
-    <GamePage />
+    <RouterView />
   </AppWrapper>
 </template>
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted } from 'vue';
+import { RouterView } from 'vue-router';
 import AppWrapper from '@/modules/common/components/app-wrapper/app-wrapper.vue';
 import resizeScreen from '@/modules/common/helpers/resize-screen';
-import GamePage from './modules/game/pages/game-page.vue';
-// import type { ShareData } from '@/modules/share/interfaces/share-data';
-
-// const dataShare: ShareData = {
-//   title: 'Ball Sort Puzzle',
-//   text: 'Come and play Ball Sort Puzzle',
-//   url: window.location.href,
-// };
 
 onMounted(() => {
   window.addEventListener('resize', resizeScreen);

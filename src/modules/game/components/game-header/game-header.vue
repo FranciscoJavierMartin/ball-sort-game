@@ -1,8 +1,12 @@
 <template>
   <header class="game-header">
-    <a :to="{ name: ROUTES.HOME.name }" title="Home" class="button blue">
+    <RouterLink
+      :to="{ name: ROUTES.HOME.name }"
+      title="Home"
+      class="button blue"
+    >
       <Icon type="home" />
-    </a>
+    </RouterLink>
     <button class="button blue" title="Restart" @click="$emit('restart')">
       <Icon type="restart" />
     </button>
@@ -30,7 +34,6 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
-import type { HeaderActions } from '@/modules/common/interfaces/common';
 import { ROUTES } from '@/router/routes';
 import Icon from '@/modules/common/components/icon/icon.vue';
 
@@ -39,7 +42,6 @@ defineProps<{
   isSpecialLevel: boolean;
   totalUndo: number;
   tubeHelpEnabled: boolean;
-  handleActions: (type: HeaderActions) => void;
 }>();
 defineEmits<{
   restart: void;
@@ -67,8 +69,14 @@ defineEmits<{
     justify-content: center;
     align-items: center;
 
-    :deep(.icon-wrapper) {
+    .icon-wrapper {
       width: 62%;
+      height: 62%;
+
+      :deep(svg) {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     span {
