@@ -10,24 +10,24 @@ export type TButtons = {
 export const BUTTONS: TButtons[] = [
   {
     icon: 'copy',
-    label: 'Copy',
+    label: 'share.modal.copy',
     action: 'copy',
   },
   {
     icon: 'twitter',
-    label: 'Twitter',
+    label: 'share.modal.twitter',
     action: 'twitter',
     url: 'https://twitter.com/intent/tweet?text=DATA_TEXT&url=DATA_URL',
   },
   {
     icon: 'facebook',
-    label: 'Facebook',
+    label: 'share.modal.facebook',
     action: 'facebook',
     url: 'https://www.facebook.com/sharer/sharer.php?u=DATA_URL&quote=DATA_TEXT',
   },
   {
     icon: 'linkedin',
-    label: 'Linkedin',
+    label: 'share.modal.linkedin',
     action: 'linkedin',
     url: 'https://www.linkedin.com/shareArticle?mini=true&url=DATA_URL&title=DATA_TITLE&summary=DATA_TEXT&source=LinkedIn',
   },
