@@ -13,7 +13,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write src/",
     "prepare": "husky",
-    "check-locale-keys": "bun ./scripts/check-locale-keys.ts"
+    "check-locale-keys": "bun ./scripts/check-locale-keys.ts",
+    "stylelint": "stylelint ./src/**/*.{css,vue}"
   },
   "dependencies": {
     "pinia": "^3.0.1",
@@ -33,7 +34,14 @@
     "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "npm-run-all2": "^7.0.2",
+    "postcss-html": "^1.8.0",
     "prettier": "^3.5.3",
+    "stylelint": "^16.19.1",
+    "stylelint-config-alphabetical-order": "^1.0.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended-vue": "^1.6.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-prettier": "^5.0.3",
     "typescript": "~5.8.0",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2",
