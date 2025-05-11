@@ -41,12 +41,7 @@ const props = defineProps<
 
 const balls = ref<Balls[]>(getInitialBalls(props.tubes));
 const testTubes = ref<TestTubes[]>(
-  getInitialTestTubes(
-    props.tubes,
-    props.distribution,
-    props.capacity,
-    props.size,
-  ),
+  getInitialTestTubes(props.tubes, props.distribution, props.capacity),
 );
 const tubeDistribution = reactive<TubeDistribution>(
   getInitialTubeDistribution({

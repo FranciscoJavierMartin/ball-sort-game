@@ -4,7 +4,6 @@ export default function getInitialTestTubes(
   tubes: TubesType,
   distribution: number[],
   capacity: number,
-  size: number,
 ): TestTubes[] {
   const totalTubes = distribution.reduce((acc, val) => acc + val, 0);
   const newTestTubes: TestTubes[] = [];
