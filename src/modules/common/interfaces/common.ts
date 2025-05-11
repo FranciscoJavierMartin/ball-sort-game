@@ -1,4 +1,3 @@
-import type { StyleValue } from 'vue';
 import type { HEADER_ACTIONS } from '@/modules/common/helpers/constants';
 
 export interface Coordinate {
@@ -37,7 +36,6 @@ export interface TestTubes {
   index: number;
   isComplete: boolean;
   showConfetti: boolean;
-  style: StyleValue;
 }
 
 export interface Balls {

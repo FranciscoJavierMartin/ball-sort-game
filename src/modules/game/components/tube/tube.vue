@@ -1,5 +1,6 @@
 <template>
   <button
+    ref="tube-element"
     class="tube"
     :style
     :aria-label="`Tube ${index + 1}`"
@@ -16,15 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type StyleValue } from 'vue';
+import { computed, useTemplateRef, type StyleValue } from 'vue';
 import ConfettiExplosion from 'vue-confetti-explosion';
-import {
-  HEIGHT_OFFSET_PERCENTAGE,
-  WIDTH_PADDING_PERCENTAGE,
-} from '@/modules/common/helpers/constants';
-import type { Coordinate } from '@/modules/common/interfaces/common';
-// x: offsetLeft
-// y: offsetTop
+import type { CoordinateTube } from '@/modules/common/interfaces/common';
+import getTubeStyles from '@/modules/game/helpers/get-tube-styles';
 
 const props = withDefaults(
   defineProps<{
@@ -41,16 +37,15 @@ const props = withDefaults(
 );
 const emits = defineEmits<{
   click: [index: number];
-  handlePosition: [data: Coordinate];
 }>();
 
-const style = computed<StyleValue>(() => {
-  const width = Math.round(props.size + props.size * WIDTH_PADDING_PERCENTAGE);
-  const borderWidth = Math.round(width - width * 0.95);
-  const height = Math.round(
-    props.size * props.capacity + props.size * HEIGHT_OFFSET_PERCENTAGE,
-  );
+const tubeElement = useTemplateRef<HTMLButtonElement>('tube-element');
 
+const style = computed<StyleValue>(() => {
+  const { width, height, borderWidth } = getTubeStyles(
+    props.size,
+    props.capacity,
+  );
   return {
     width: `${width}px`,
     borderWidth: `${borderWidth}px`,
@@ -58,9 +53,18 @@ const style = computed<StyleValue>(() => {
   };
 });
 
+const coordinates = computed<CoordinateTube>(() => {
+  const x = tubeElement.value?.offsetLeft || 0;
+  const y = tubeElement.value?.offsetTop || 0;
+
+  return { x, y, capacity: props.capacity };
+});
+
 function handleClick(): void {
   emits('click', props.index);
 }
+
+defineExpose({ coordinates });
 </script>
 
 <style scoped>
