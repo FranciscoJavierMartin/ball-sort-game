@@ -7,6 +7,7 @@
       :tubeHelpEnabled="tubeDistribution.isComplete"
     />
     <Tubes
+      ref="tubes"
       :size="level.size"
       :distribution="tubeDistribution.distribution"
       :test-tubes
@@ -16,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue';
+import { computed, reactive, ref, useTemplateRef, watch } from 'vue';
 import GameHeader from '@/modules/game/components/game-header/game-header.vue';
 import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue';
 import type {
@@ -24,6 +25,7 @@ import type {
   Balls,
   GameProps,
   TestTubes,
+  CoordinateTube,
 } from '@/modules/common/interfaces/common';
 import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
@@ -121,6 +123,11 @@ const tubeDistribution = reactive<TubeDistribution>(
   }),
 );
 
+const tubesRef = useTemplateRef('tubes');
+const coordinateTubes = computed<CoordinateTube[]>(
+  () => tubesRef.value?.coordinateTubes ?? [],
+);
+
 function handleClick(index: number): void {
   console.log('Clicked', index);
 }
@@ -128,7 +135,11 @@ function handleClick(index: number): void {
 watch(
   () => [level.size, tubeDistribution],
   ([newSize, newTubeDistribution]) => {
-    balls.value = getPositionBalls(balls.value, [], newSize as number);
+    balls.value = getPositionBalls(
+      balls.value,
+      coordinateTubes.value,
+      newSize as number,
+    );
   },
   { deep: true, immediate: true },
 );

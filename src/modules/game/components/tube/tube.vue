@@ -1,5 +1,6 @@
 <template>
   <button
+    ref="tube-element"
     class="tube"
     :style
     :aria-label="`Tube ${index + 1}`"
@@ -16,15 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type StyleValue } from 'vue';
+import { computed, useTemplateRef, type StyleValue } from 'vue';
 import ConfettiExplosion from 'vue-confetti-explosion';
 import {
   HEIGHT_OFFSET_PERCENTAGE,
   WIDTH_PADDING_PERCENTAGE,
 } from '@/modules/common/helpers/constants';
 import type { CoordinateTube } from '@/modules/common/interfaces/common';
-// x: offsetLeft
-// y: offsetTop
 
 const props = withDefaults(
   defineProps<{
@@ -44,6 +43,8 @@ const emits = defineEmits<{
   handlePosition: [data: CoordinateTube];
 }>();
 
+const tubeElement = useTemplateRef<HTMLButtonElement>('tube-element');
+
 const style = computed<StyleValue>(() => {
   const width = Math.round(props.size + props.size * WIDTH_PADDING_PERCENTAGE);
   const borderWidth = Math.round(width - width * 0.95);
@@ -58,9 +59,18 @@ const style = computed<StyleValue>(() => {
   };
 });
 
+const coordinates = computed<CoordinateTube>(() => {
+  const x = tubeElement.value?.offsetLeft || 0;
+  const y = tubeElement.value?.offsetTop || 0;
+
+  return { x, y, capacity: props.capacity };
+});
+
 function handleClick(): void {
   emits('click', props.index);
 }
+
+defineExpose({ coordinates });
 </script>
 
 <style scoped>

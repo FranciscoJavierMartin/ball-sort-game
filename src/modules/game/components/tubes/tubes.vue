@@ -4,6 +4,7 @@
       <Tube
         v-for="tube of getTubes(total, row)"
         :key="tube.index"
+        ref="tubes"
         v-bind="tube"
         :size
         @click="(index) => $emit('click', index)"
@@ -18,6 +19,7 @@ import type {
   TestTubes,
 } from '@/modules/common/interfaces/common';
 import Tube from '@/modules/game/components/tube/tube.vue';
+import { computed, useTemplateRef } from 'vue';
 
 const props = defineProps<{
   distribution: number[];
@@ -28,6 +30,17 @@ const emits = defineEmits<{
   click: [index: number];
   handlePosition: [data: CoordinateTube];
 }>();
+
+const tubeRefs = useTemplateRef('tubes');
+
+const coordinateTubes = computed<CoordinateTube[]>(
+  () =>
+    tubeRefs.value
+      ?.map((tube) => tube?.coordinates)
+      .filter((tube) => tube !== undefined) ?? [],
+);
+
+defineExpose({ coordinateTubes });
 
 function getTubes(total: number, row: number) {
   return new Array(total).fill(null).map((_, i) => {
