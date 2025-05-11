@@ -24,5 +24,24 @@ export default function updatePositionBalls(
   coordinates: CoordinateTube[],
   size: number,
 ): Balls[] {
-  return [];
+  const copyBalls = [...balls];
+
+  for (let i = 0; i < coordinates.length; i++) {
+    const ballsTube = copyBalls.filter((v) => v.indexTube === i);
+
+    if (ballsTube.length !== 0) {
+      for (let c = 0; c < ballsTube.length; c++) {
+        const { x, y } = getPositionBallTube(
+          coordinates[i],
+          size,
+          copyBalls[ballsTube[c].index].positionTube,
+        );
+
+        copyBalls[ballsTube[c].index].x = x;
+        copyBalls[ballsTube[c].index].y = y;
+      }
+    }
+  }
+
+  return copyBalls;
 }
