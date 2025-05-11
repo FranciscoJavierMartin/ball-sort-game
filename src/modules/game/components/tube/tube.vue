@@ -19,11 +19,8 @@
 <script setup lang="ts">
 import { computed, useTemplateRef, type StyleValue } from 'vue';
 import ConfettiExplosion from 'vue-confetti-explosion';
-import {
-  HEIGHT_OFFSET_PERCENTAGE,
-  WIDTH_PADDING_PERCENTAGE,
-} from '@/modules/common/helpers/constants';
 import type { CoordinateTube } from '@/modules/common/interfaces/common';
+import getTubeStyles from '@/modules/game/helpers/get-tube-styles';
 
 const props = withDefaults(
   defineProps<{
@@ -46,12 +43,10 @@ const emits = defineEmits<{
 const tubeElement = useTemplateRef<HTMLButtonElement>('tube-element');
 
 const style = computed<StyleValue>(() => {
-  const width = Math.round(props.size + props.size * WIDTH_PADDING_PERCENTAGE);
-  const borderWidth = Math.round(width - width * 0.95);
-  const height = Math.round(
-    props.size * props.capacity + props.size * HEIGHT_OFFSET_PERCENTAGE,
+  const { width, height, borderWidth } = getTubeStyles(
+    props.size,
+    props.capacity,
   );
-
   return {
     width: `${width}px`,
     borderWidth: `${borderWidth}px`,

@@ -31,7 +31,7 @@ import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
 import getInitialTubeDistribution from '@/modules/game/helpers/get-initial-tube-distribution';
 import Tubes from '@/modules/game/components/tubes/tubes.vue';
-import getPositionBalls from '../helpers/get-position-balls';
+import updatePositionBalls from '@/modules/game/helpers/update-position-balls';
 
 const level: GameProps & {
   levelCompleted: boolean;
@@ -135,7 +135,7 @@ function handleClick(index: number): void {
 watch(
   () => [level.size, tubeDistribution],
   ([newSize, newTubeDistribution]) => {
-    balls.value = getPositionBalls(
+    balls.value = updatePositionBalls(
       balls.value,
       coordinateTubes.value,
       newSize as number,
