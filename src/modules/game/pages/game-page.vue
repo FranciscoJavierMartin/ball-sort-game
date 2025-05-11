@@ -1,40 +1,12 @@
 <template>
-  <GameWrapper :disable-u-i="false">
-    <GameHeader
-      :isSpecialLevel="level.isSpecialLevel"
-      :level="level.level"
-      :totalUndo="2"
-      :tubeHelpEnabled="tubeDistribution.isComplete"
-    />
-    <Tubes
-      ref="tubes"
-      :size="level.size"
-      :distribution="tubeDistribution.distribution"
-      :test-tubes
-      @click="handleClick"
-    />
-  </GameWrapper>
+  <Game v-bind="level" />
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref, useTemplateRef, watch } from 'vue';
-import GameHeader from '@/modules/game/components/game-header/game-header.vue';
-import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue';
-import type {
-  TubeDistribution,
-  Balls,
-  GameProps,
-  TestTubes,
-  CoordinateTube,
-} from '@/modules/common/interfaces/common';
-import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
-import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
-import getInitialTubeDistribution from '@/modules/game/helpers/get-initial-tube-distribution';
-import Tubes from '@/modules/game/components/tubes/tubes.vue';
-import updatePositionBalls from '@/modules/game/helpers/update-position-balls';
+import Game from '@/modules/game/components/game/game.vue';
+import type { GameProps } from '@/modules/common/interfaces/common';
 
 const level: GameProps & {
-  levelCompleted: boolean;
   handleNextLevel: (isNextLevel: boolean) => void;
 } = {
   capacity: 4,
@@ -100,47 +72,7 @@ const level: GameProps & {
       ],
     },
   },
-  levelCompleted: false,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handleNextLevel: (isNextLevel = false) => {},
 };
-
-const balls = ref<Balls[]>(getInitialBalls(level.tubes));
-const testTubes = ref<TestTubes[]>(
-  getInitialTestTubes(
-    level.tubes,
-    level.distribution,
-    level.capacity,
-    level.size,
-  ),
-);
-const tubeDistribution = reactive<TubeDistribution>(
-  getInitialTubeDistribution({
-    balls: balls.value,
-    capacity: level.capacity,
-    distribution: level.distribution,
-    testTubes: testTubes.value,
-  }),
-);
-
-const tubesRef = useTemplateRef('tubes');
-const coordinateTubes = computed<CoordinateTube[]>(
-  () => tubesRef.value?.coordinateTubes ?? [],
-);
-
-function handleClick(index: number): void {
-  console.log('Clicked', index);
-}
-
-watch(
-  () => [level.size, tubeDistribution],
-  ([newSize, newTubeDistribution]) => {
-    balls.value = updatePositionBalls(
-      balls.value,
-      coordinateTubes.value,
-      newSize as number,
-    );
-  },
-  { deep: true, immediate: true },
-);
 </script>
