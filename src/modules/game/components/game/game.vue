@@ -27,6 +27,7 @@ import type {
   GameProps,
   TestTubes,
   CoordinateTube,
+  SelectedItems,
 } from '@/modules/common/interfaces/common';
 import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
@@ -34,11 +35,14 @@ import getInitialTubeDistribution from '@/modules/game/helpers/get-initial-tube-
 import Tubes from '@/modules/game/components/tubes/tubes.vue';
 import updatePositionBalls from '@/modules/game/helpers/update-position-balls';
 import RenderBalls from '@/modules/game/components/render-balls/render-balls.vue';
+import { INITIAL_SELECTED_ITEMS } from '@/modules/common/helpers/constants';
+import validateSelectedTubes from '@/modules/game/helpers/validate-selected-tubes';
 
 const props = defineProps<
   GameProps & { handleNextLevel: (isNextLevel: boolean) => void }
 >();
 
+const selectedItems = ref<SelectedItems>(INITIAL_SELECTED_ITEMS);
 const balls = ref<Balls[]>(getInitialBalls(props.tubes));
 const testTubes = ref<TestTubes[]>(
   getInitialTestTubes(props.tubes, props.distribution, props.capacity),
@@ -57,14 +61,24 @@ const coordinateTubes = computed<CoordinateTube[]>(
   () => tubesRef.value?.coordinateTubes ?? [],
 );
 
-function handleClick(index: number): void {
-  console.log('Clicked', index);
+function handleClick(indexSelectedTube: number): void {
+  const { balls: _balls, selectedItems: _selectedItems } =
+    validateSelectedTubes({
+      indexSelectedTube,
+      selectedItems: selectedItems.value,
+      size: props.size,
+      testTubes: testTubes.value,
+      tubePosition: coordinateTubes.value,
+      balls: balls.value,
+    });
+
+  balls.value = _balls;
+  selectedItems.value = _selectedItems;
 }
 
 watch(
   () => [props.size, tubeDistribution, coordinateTubes.value],
   ([newSize]) => {
-    console.log('Inside watch');
     balls.value = updatePositionBalls(
       balls.value,
       coordinateTubes.value,
