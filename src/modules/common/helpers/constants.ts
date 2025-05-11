@@ -2,7 +2,7 @@ import type { SelectedItems, Tween } from '@/modules/common/interfaces/common';
 
 export const BASE_HEIGHT = 732;
 export const BASE_WIDTH = 412;
-export const SPEED_ANIMATION = 1000;
+export const SPEED_ANIMATION = 80;
 // Percentage to be added to the tube for the width...
 export const WIDTH_PADDING_PERCENTAGE = 0.4;
 // The additional value that will be added to the height of the tube...
