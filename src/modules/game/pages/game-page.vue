@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import GameHeader from '@/modules/game/components/game-header/game-header.vue';
 import GameWrapper from '@/modules/game/components/game-wrapper/game-wrapper.vue';
 import type {
@@ -29,6 +29,7 @@ import getInitialBalls from '@/modules/game/helpers/get-initial-balls';
 import getInitialTestTubes from '@/modules/game/helpers/get-initial-test-tubes';
 import getInitialTubeDistribution from '@/modules/game/helpers/get-initial-tube-distribution';
 import Tubes from '@/modules/game/components/tubes/tubes.vue';
+import getPositionBalls from '../helpers/get-position-balls';
 
 const level: GameProps & {
   levelCompleted: boolean;
@@ -123,4 +124,12 @@ const tubeDistribution = reactive<TubeDistribution>(
 function handleClick(index: number): void {
   console.log('Clicked', index);
 }
+
+watch(
+  () => [level.size, tubeDistribution],
+  ([newSize, newTubeDistribution]) => {
+    balls.value = getPositionBalls(balls.value, [], newSize as number);
+  },
+  { deep: true, immediate: true },
+);
 </script>
