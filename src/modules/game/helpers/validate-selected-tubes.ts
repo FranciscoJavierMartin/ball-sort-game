@@ -32,8 +32,8 @@ export default function validateSelectedTubes({
   selectedItems: SelectedItems;
 } {
   const balls = [..._balls];
-  const selectedItems = { ..._selectedItems };
-  const { originBallIndex, originTubeIndex } = selectedItems;
+  let selectedItems: SelectedItems = _selectedItems;
+  const { originBallIndex, originTubeIndex } = _selectedItems;
   const tube = testTubes[indexSelectedTube];
   const ballTube = tube.balls;
   const isEmpty = ballTube.length === 0;
@@ -53,8 +53,10 @@ export default function validateSelectedTubes({
       );
       balls[ballIndex].bounce = false;
 
-      selectedItems.originTubeIndex = indexSelectedTube;
-      selectedItems.originBallIndex = ballIndex;
+      selectedItems = {
+        originTubeIndex: indexSelectedTube,
+        originBallIndex: ballIndex,
+      };
     }
   } else if (originTubeIndex === indexSelectedTube) {
     /**
@@ -65,8 +67,7 @@ export default function validateSelectedTubes({
     balls[ballIndex].animate = true;
     balls[ballIndex].bounce = true;
 
-    selectedItems.originBallIndex = INITIAL_SELECTED_ITEMS.originBallIndex;
-    selectedItems.originTubeIndex = INITIAL_SELECTED_ITEMS.originTubeIndex;
+    selectedItems = INITIAL_SELECTED_ITEMS;
   } else {
     /**
      * The ball can be moved under any of the following conditions:
@@ -99,8 +100,10 @@ export default function validateSelectedTubes({
           size,
         );
 
-        selectedItems.originTubeIndex = indexSelectedTube;
-        selectedItems.originBallIndex = ballIndex;
+        selectedItems = {
+          originTubeIndex: indexSelectedTube,
+          originBallIndex: ballIndex,
+        };
       }
     }
   }
