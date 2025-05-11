@@ -10,6 +10,6 @@ import { computed } from 'vue';
 const props = defineProps<{ balls: Balls[]; size: number }>();
 
 const filteredBalls = computed<Balls[]>(() => {
-  return props.balls.filter((ball) => ball.x && ball.y);
+  return props.balls.filter((ball) => ball);
 });
 </script>

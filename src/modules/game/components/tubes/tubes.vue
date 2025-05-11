@@ -26,9 +26,8 @@ const props = defineProps<{
   size: number;
   testTubes: TestTubes[];
 }>();
-const emits = defineEmits<{
+defineEmits<{
   click: [index: number];
-  handlePosition: [data: CoordinateTube];
 }>();
 
 const tubeRefs = useTemplateRef('tubes');

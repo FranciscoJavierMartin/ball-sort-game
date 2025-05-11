@@ -9,6 +9,7 @@ function getPositionBallTube(
 ): { x: number; y: number } {
   const { height, borderWidth } = getTubeStyles(size, tubePosition.capacity);
   const { x, y } = tubePosition;
+
   const percentage = size * WIDTH_PADDING_PERCENTAGE;
   const baseX = Math.round(x + percentage / 2);
   const baseY = Math.round(y + height - size - borderWidth - percentage / 2);
@@ -26,7 +27,13 @@ export default function updatePositionBalls(
 ): Balls[] {
   const copyBalls = [...balls];
 
+  /**
+   * the positions of the tubes are read
+   */
   for (let i = 0; i < coordinates.length; i++) {
+    /**
+     * The balls corresponding to each tube are filtered.
+     */
     const ballsTube = copyBalls.filter((v) => v.indexTube === i);
 
     if (ballsTube.length !== 0) {

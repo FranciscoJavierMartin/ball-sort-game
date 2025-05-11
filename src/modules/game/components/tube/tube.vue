@@ -37,7 +37,6 @@ const props = withDefaults(
 );
 const emits = defineEmits<{
   click: [index: number];
-  handlePosition: [data: CoordinateTube];
 }>();
 
 const tubeElement = useTemplateRef<HTMLButtonElement>('tube-element');
